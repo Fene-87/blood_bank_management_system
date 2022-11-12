@@ -2,16 +2,154 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
+.nav-items {
+   color: #fff;
+   margin: 1rem;
+   cursor: pointer;
+}
+
+.nav-items:hover {
+  color: #282c34;
+}
+
+.navigation-bar {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(159, 5, 36);
+  justify-content: space-between;
+  padding-left: 10rem;
+  padding-right: 10rem;
+}
+
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+}
+
+.home-background {
+  height: 92vh;
+  width: 100%;
+  background-image: url(/src/img/blood-donation_istock.jpg);
+  background-size: cover;
+  margin-top: 0;
+}
+
+.req-background {
+  background-image: url(./img/blood-donation_istock.jpg);
+  height: 92vh;
+  width: 100%;
+  background-size: cover;
+  margin-top: 0;
+}
+
+.image-overlay {
+  height: 92vh;
+  margin-top: 0;
+  width: 100%;
+  background-color: rgb(9, 9, 65, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.donor-list {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid black;
+}
+
+.each-donor {
+  border: 1px solid gray;
+  width: 250px;
+}
+
+.reg-donation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.donation-input {
+  width: 30rem;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.blood-request {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.request-input {
+  width: 30rem;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border-style: none;
+}
+
+.request-button {
+  width: 20rem;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.bg-container {
+  padding: 40px;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  
+}
+
+.group-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 30px;
+  row-gap: 30px;
+  margin-top: 30px;
+  
+}
+
+.totals {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 30px;
+  row-gap: 30px;
+  margin-top: 100px;
+}
+
+.blood-group {
+  height: 8rem;
+  border: 1px solid gray;
+}
+
+.bank-list {
+ width: 40rem;
+ border: 1px solid gray;
+ height: 12rem;
+ margin: auto;
+ margin-top: 10px;
+}
+
+.bank-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-left: 30px;
+}
+
 
 .App-header {
   background-color: #282c34;
@@ -22,6 +160,44 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.donor_reg {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-self: center;
+  padding: 20px;
+  margin: auto;
+  align-items: center;
+}
+
+.donor_registration {
+  background-image: url(./img/blood-donation_istock.jpg);
+  height: 92vh;
+  width: 100%;
+  background-size: cover;
+  margin-top: 0;
+}
+
+.donor-input {
+  width: 20rem;
+  margin-top: 1rem;
+  padding: 10px;
+  border-radius: 5px;
+ 
+}
+
+.donor-button {
+  width: 21rem;
+  margin-top: 1rem;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.donor-button:hover {
+  color: red;
 }
 
 .App-link {

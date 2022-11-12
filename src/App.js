@@ -1,24 +1,27 @@
-import logo from './logo.svg';
+
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import AboutPage from './pages/AboutPage';
+import AdminDonors from './pages/AdminDonors';
+import AdminHome from './pages/AdminHome';
+import AdminLogin from './pages/AdminLogin';
+import BloodRequest from './pages/BloodRequest';
+import DonorLogin from './pages/DonorLogin';
+import DonorReg from './pages/DonorReg';
+import Home from './pages/Home';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path='/' element={<Home />}/>
+      <Route path='/donor_reg' element={<DonorReg />}/>
+      <Route path='/donor_login' element={<DonorLogin />} />
+      <Route path='/about' element={<AboutPage />} />
+      <Route path='/admin_login' element={<AdminLogin />} />
+      <Route path='/admin_home' element={<AdminHome />} />
+      <Route path='/admin_donors' element={<AdminDonors />} />
+      <Route path='/blood_request' element={<BloodRequest />} />
+    </Routes>
   );
 }
 
