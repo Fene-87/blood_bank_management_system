@@ -69,6 +69,17 @@ app.get('/bbank', (req, res) => {
     })
 })
 
+app.get('/allbloods', (req, res) => {
+    db.query('SELECT SUM(a_pos_quantity), SUM(b_pos_quantity), SUM(ab_pos_quantity), SUM(o_pos_quantity), SUM(a_neg_quantity), SUM(b_neg_quantity), SUM(ab_neg_quantity), SUM(o_neg_quantity)  FROM blood_banks', (err, result) => {
+        if(err){
+            console.log(err)
+        }else{
+            res.send(result)
+        }
+    })
+    
+})
+
 app.get("/donors", (req, res) => {
     db.query('SELECT * FROM all_donors', (err, result) => {
         if(err){
@@ -77,6 +88,158 @@ app.get("/donors", (req, res) => {
             res.send(result);
         }
     })
+})
+
+app.put("/updateapos", (req, res) => {
+    
+    const donBloodBank = req.body.donBloodBank;
+    const donQuantity = req.body.donQuantity;
+
+    db.query(
+        'UPDATE blood_banks SET a_pos_quantity = a_pos_quantity + ? WHERE bank_name = ?',
+        [donQuantity, donBloodBank],
+        (err, result) => {
+            if(err){
+                console.log(err);
+            }else{
+                res.send(result)
+                console.log(result);
+            }
+        }
+    )
+})
+
+app.put("/updateaneg", (req, res) => {
+    
+    const donBloodBank = req.body.donBloodBank;
+    const donQuantity = req.body.donQuantity;
+
+    db.query(
+        'UPDATE blood_banks SET a_neg_quantity = a_neg_quantity + ? WHERE bank_name = ?',
+        [donQuantity, donBloodBank],
+        (err, result) => {
+            if(err){
+                console.log(err);
+            }else{
+                res.send(result)
+                console.log(result);
+            }
+        }
+    )
+})
+
+app.put("/updatebpos", (req, res) => {
+    
+    const donBloodBank = req.body.donBloodBank;
+    const donQuantity = req.body.donQuantity;
+
+    db.query(
+        'UPDATE blood_banks SET b_pos_quantity = b_pos_quantity + ? WHERE bank_name = ?',
+        [donQuantity, donBloodBank],
+        (err, result) => {
+            if(err){
+                console.log(err);
+            }else{
+                res.send(result)
+                console.log(result);
+            }
+        }
+    )
+})
+
+app.put("/updatebneg", (req, res) => {
+    
+    const donBloodBank = req.body.donBloodBank;
+    const donQuantity = req.body.donQuantity;
+
+    db.query(
+        'UPDATE blood_banks SET b_neg_quantity = b_neg_quantity + ? WHERE bank_name = ?',
+        [donQuantity, donBloodBank],
+        (err, result) => {
+            if(err){
+                console.log(err);
+            }else{
+                res.send(result)
+                console.log(result);
+            }
+        }
+    )
+})
+
+app.put("/updateabpos", (req, res) => {
+    
+    const donBloodBank = req.body.donBloodBank;
+    const donQuantity = req.body.donQuantity;
+
+    db.query(
+        'UPDATE blood_banks SET ab_pos_quantity = ab_pos_quantity + ? WHERE bank_name = ?',
+        [donQuantity, donBloodBank],
+        (err, result) => {
+            if(err){
+                console.log(err);
+            }else{
+                res.send(result)
+                console.log(result);
+            }
+        }
+    )
+})
+
+app.put("/updateabneg", (req, res) => {
+    
+    const donBloodBank = req.body.donBloodBank;
+    const donQuantity = req.body.donQuantity;
+
+    db.query(
+        'UPDATE blood_banks SET ab_neg_quantity = ab_neg_quantity + ? WHERE bank_name = ?',
+        [donQuantity, donBloodBank],
+        (err, result) => {
+            if(err){
+                console.log(err);
+            }else{
+                res.send(result)
+                console.log(result);
+            }
+        }
+    )
+})
+
+app.put("/updateopos", (req, res) => {
+    
+    const donBloodBank = req.body.donBloodBank;
+    const donQuantity = req.body.donQuantity;
+
+    db.query(
+        'UPDATE blood_banks SET o_pos_quantity = o_pos_quantity + ? WHERE bank_name = ?',
+        [donQuantity, donBloodBank],
+        (err, result) => {
+            if(err){
+                console.log(err);
+            }else{
+                res.send(result)
+                console.log(result);
+            }
+        }
+    )
+})
+
+app.put("/updateoneg", (req, res) => {
+    
+    const donBloodBank = req.body.donBloodBank;
+    const donQuantity = req.body.donQuantity;
+
+    db.query(
+        'UPDATE blood_banks SET o_neg_quantity = o_neg_quantity + ? WHERE bank_name = ?',
+        [donQuantity, donBloodBank],
+        (err, result) => {
+            if(err){
+                console.log(err);
+            }else{
+                res.send(result)
+                console.log(result);
+            }
+        }
+    )
 })
 
 app.listen(3001, () => {

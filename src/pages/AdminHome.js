@@ -5,6 +5,7 @@ import { FaHeart, FaUsers, FaHandHoldingHeart, FaSpinner, FaCheckSquare } from '
 function AdminHome() {
   useEffect(() => {
     setHomePage(true);
+    homeAllBloods();
   }, [])
 
   const [donorList, setDonorList] = useState([]);
@@ -17,6 +18,7 @@ function AdminHome() {
   const [donQuantity, setDonorQuantity] = useState(0);
   const [donBloodBank, setDonBloodBank] = useState('');
   const [donBloodGrp, setDonBloodGrp] = useState('');
+  const [allBloods, setAllBloods] = useState([]);
 
   const getDonors = () => {
     Axios.get('http://localhost:3001/donors').then((response) => {
@@ -28,6 +30,15 @@ function AdminHome() {
     setRegisterDonation(false);
     setHomePage(false)
     setBloodBank(false);
+  }
+
+  const homeAllBloods = () => {
+    Axios.get('http://localhost:3001/allbloods').then((response) => {
+      let data = response.data[0];
+      setAllBloods(Object.values(data));
+      console.log(Object.values(data));
+      
+    })
   }
 
   const regDon = () => {
@@ -55,6 +66,8 @@ function AdminHome() {
     setRegisterDonation(false);
   }
 
+  /**Update Blood Donations As Well As Blood Bank Stock*/
+
 const newDonation = () => {
   Axios.post('http://localhost:3001/newdonation', {
     donorId: donorId,
@@ -63,8 +76,76 @@ const newDonation = () => {
     donBloodBank: donBloodBank,
   }).then(() => {
     console.log('success');
-  })
+  });
+
+  if(donBloodGrp === 'A+'){
+
+    Axios.put('http://localhost:3001/updateapos', {
+      donBloodGrp: donBloodGrp,
+      donBloodBank: donBloodBank,
+      donQuantity: donQuantity
+    }).then(() => {
+      console.log('successfully updated A+ blood')
+    })
+  }else if(donBloodGrp === 'A-'){
+    Axios.put('http://localhost:3001/updateaneg', {
+      donBloodGrp: donBloodGrp,
+      donBloodBank: donBloodBank,
+      donQuantity: donQuantity
+    }).then(() => {
+      console.log('successfully updated A- blood')
+    })
+  }else if(donBloodGrp === 'B+'){
+    Axios.put('http://localhost:3001/updatebpos', {
+      donBloodGrp: donBloodGrp,
+      donBloodBank: donBloodBank,
+      donQuantity: donQuantity
+    }).then(() => {
+      console.log('successfully updated B+ blood')
+    })
+  }else if(donBloodGrp === 'B-'){
+    Axios.put('http://localhost:3001/updatebneg', {
+      donBloodGrp: donBloodGrp,
+      donBloodBank: donBloodBank,
+      donQuantity: donQuantity
+    }).then(() => {
+      console.log('successfully updated B- blood')
+    })
+  }else if(donBloodGrp === 'AB+'){
+    Axios.put('http://localhost:3001/updateabpos', {
+      donBloodGrp: donBloodGrp,
+      donBloodBank: donBloodBank,
+      donQuantity: donQuantity
+    }).then(() => {
+      console.log('successfully updated AB+ blood')
+    })
+  }else if(donBloodGrp === 'AB-'){
+    Axios.put('http://localhost:3001/updateabneg', {
+      donBloodGrp: donBloodGrp,
+      donBloodBank: donBloodBank,
+      donQuantity: donQuantity
+    }).then(() => {
+      console.log('successfully updated AB- blood')
+    })
+  }else if(donBloodGrp === 'O+'){
+    Axios.put('http://localhost:3001/updateopos', {
+      donBloodGrp: donBloodGrp,
+      donBloodBank: donBloodBank,
+      donQuantity: donQuantity
+    }).then(() => {
+      console.log('successfully updated O+ blood')
+    })
+  }else if(donBloodGrp === 'O-'){
+    Axios.put('http://localhost:3001/updateoneg', {
+      donBloodGrp: donBloodGrp,
+      donBloodBank: donBloodBank,
+      donQuantity: donQuantity
+    }).then(() => {
+      console.log('successfully updated O- blood')
+    })
+  }
 }
+
 
   return (
     <div>
@@ -89,50 +170,63 @@ const newDonation = () => {
             <h3>A+</h3>
             <FaHeart style={{color: 'rgb(159, 5, 36)'}} size={30}/>
           </div>
+          <p>{allBloods[0]}</p>
+          <div>
+
+          </div>
          </div>
          <div className='blood-group'>
           <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 15, paddingRight: 15}}>
             <h3>B+</h3>
             <FaHeart style={{color: 'rgb(159, 5, 36)'}} size={30}/>
           </div>
+          <p>{allBloods[1]}</p>
          </div>
          <div className='blood-group'>
           <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 15, paddingRight: 15}}>
             <h3>AB+</h3>
             <FaHeart style={{color: 'rgb(159, 5, 36)'}} size={30}/>
           </div>
+          <p>{allBloods[2]}</p>
          </div>
          <div className='blood-group'>
           <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 15, paddingRight: 15}}>
             <h3>O+</h3>
             <FaHeart style={{color: 'rgb(159, 5, 36)'}} size={30}/>
           </div>
+          <p>{allBloods[3]}</p>
          </div>
          <div className='blood-group'>
           <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 15, paddingRight: 15}}>
             <h3>A-</h3>
             <FaHeart style={{color: 'rgb(159, 5, 36)'}} size={30}/>
           </div>
+          <p>{allBloods[4]}</p>
          </div>
          <div className='blood-group'>
           <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 15, paddingRight: 15}}>
             <h3>B-</h3>
             <FaHeart style={{color: 'rgb(159, 5, 36)'}} size={30}/>
           </div>
+          <p>{allBloods[5]}</p>
          </div>
          <div className='blood-group'>
           <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 15, paddingRight: 15}}>
             <h3>AB-</h3>
             <FaHeart style={{color: 'rgb(159, 5, 36)'}} size={30}/>
           </div>
+          <p>{allBloods[6]}</p>
          </div>
          <div className='blood-group'>
           <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 15, paddingRight: 15}}>
             <h3>O-</h3>
             <FaHeart style={{color: 'rgb(159, 5, 36)'}} size={30}/>
           </div>
+          <p>{allBloods[7]}</p>
          </div>
       </div>
+
+      <p>{Object.values(allBloods)}</p>
 
       <div className='totals'>
         <div className='blood-group'>
