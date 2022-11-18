@@ -26,6 +26,7 @@
   justify-content: space-between;
   padding-left: 10rem;
   padding-right: 10rem;
+  height: 10vh;
 }
 
 .nav-bar {
@@ -34,6 +35,14 @@
 }
 
 .home-background {
+  height: 92vh;
+  width: 100%;
+  background-image: url(/src/img/blood-donation_istock.jpg);
+  background-size: cover;
+  margin-top: 0;
+}
+
+.login-bg {
   height: 92vh;
   width: 100%;
   background-image: url(/src/img/blood-donation_istock.jpg);
@@ -62,12 +71,17 @@
 .donor-list {
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 .each-donor {
-  border: 1px solid gray;
-  width: 250px;
+  width: 12%;
+}
+
+.donor-head {
+  color: rgb(9, 9, 65);
+  font-size: large;
+  font-weight: bold;
 }
 
 .reg-donation {
@@ -75,13 +89,35 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 80%;
+  width: 50%;
+  margin: auto;
+  background-color: rgb(9, 9, 65, 0.8);
+  border-radius: 8px;
+}
+
+.donation-page {
+  height: 78vh;
+  background-color: #D3D3D3;
+  padding-top: 5rem;
 }
 
 .donation-input {
   width: 30rem;
   padding: 10px;
   margin-top: 10px;
+  border-style: none;
+  border-radius: 5px;
+}
+
+.donation-btn {
+  margin-top: 13px;
+  width: 15rem;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgb(9, 9, 65);
+  border-style: none;
+  color: thistle;
 }
 
 .blood-request {
@@ -90,6 +126,15 @@
   height: 90vh;
   justify-content: center;
   align-items: center;
+}
+
+.approve-reject {
+  width: 8%;
+  align-self: center;
+  height: 30px;
+  border-style: none;
+  border-radius: 5px;
+  color: #fff;
 }
 
 .request-input {
@@ -104,6 +149,10 @@
   width: 20rem;
   padding: 10px;
   margin-top: 10px;
+  background-color: rgb(9, 9, 65, 0.8);
+  border-style: none;
+  border-radius: 8px;
+  color: #fff;
 }
 
 .bg-container {
@@ -111,6 +160,7 @@
   justify-content: center;
   align-items: center;
   height: 80vh;
+  background-color:	#D3D3D3;
   
 }
 
@@ -133,21 +183,30 @@
 
 .blood-group {
   height: 8rem;
-  border: 1px solid gray;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.bg-text {
+  color: thistle;
 }
 
 .bank-list {
  width: 40rem;
- border: 1px solid gray;
- height: 12rem;
+ height: 14rem;
  margin: auto;
  margin-top: 10px;
+ background-color: rgb(9, 9, 65, 0.8);
+ padding: 10px;
+ border-radius: 8px;
+ 
 }
 
 .bank-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  margin-left: 30px;
+  column-gap: 10px;
+  row-gap: 10px;
 }
 
 
@@ -185,7 +244,18 @@
   margin-top: 1rem;
   padding: 10px;
   border-radius: 5px;
+  border-style: none;
  
+}
+
+.donor-btn {
+  width: 10rem;
+  margin-top: 10px;
+  padding: 10px;
+  color: #fff;
+  background-color: rgb(9, 9, 65, 0.8);
+  border-radius: 8px;
+  border-style: none;
 }
 
 .donor-button {

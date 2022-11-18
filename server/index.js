@@ -3,6 +3,7 @@ const app = express();
 const mysql2 = require('mysql2');
 const cors = require('cors');
 
+
 app.use(cors());
 app.use(express.json());
 
@@ -40,6 +41,29 @@ app.post('/create', (req, res) => {
     );
 });
 
+app.post('/makerequest', (req, res) => {
+    const hospitalName = req.body.hospitalName;
+    const doctorName = req.body.doctorName;
+    const patientName = req.body.patientName;
+    const location = req.body.location;
+    const bloodUnits = req.body.bloodUnits;
+    const bldGrp = req.body.bldGrp;
+    const reason = req.body.reason;
+    const status = 'Pending';
+
+    db.query(
+        'INSERT INTO requests (hospital_name, doctor_name, patient_name, location, blood_units, blood_group, reason, status) VALUES (?,?,?,?,?,?,?,?)',
+        [hospitalName, doctorName, patientName, location, bloodUnits, bldGrp, reason, status],
+        (err, result) => {
+            if(err){
+                console.log(err);
+            }else{
+                res.send('request successfully added');
+            }
+        }
+    )
+})
+
 app.post('/newdonation', (req, res) => {
     const donorId = req.body.donorId;
     const donQuantity = req.body.donQuantity;
@@ -54,6 +78,25 @@ app.post('/newdonation', (req, res) => {
                 console.log(err);
             }else{
                 res.send('success');
+            }
+        }
+    )
+})
+
+app.post('/donorlogin', (req, res) => {
+    const loginUsername = req.body.loginUsername;
+    const loginPassword = req.body.loginPassword;
+
+    db.query(
+        'SELECT * FROM all_donors WHERE full_name = ? AND national_id = ?',
+        [loginUsername, loginPassword],
+        (err, result) => {
+            if(err){
+                res.send({err: err});
+            } else if(result.length > 0){
+                res.send(result);
+            } else {
+                res.send({message: 'Invalid username/password'});
             }
         }
     )
@@ -86,6 +129,38 @@ app.get("/donors", (req, res) => {
             console.log(err);
         }else{
             res.send(result);
+        }
+    })
+})
+
+app.get('/showrequests', (req, res) => {
+    db.query('SELECT * FROM requests', (err, result) => {
+        if(err){
+            console.log(err);
+        }else{
+            res.send(result);
+        }
+    })
+})
+
+app.get('/approvestatus', (req, res) => {
+    db.query('SELECT * FROM requests WHERE status = ?',
+    ['Approved'],
+    (err, result) => {
+        if(err){
+            console.log(err);
+        } else {
+            res.send(result)
+        }
+    })
+})
+
+app.get('/allstatus', (req, res) => {
+    db.query('SELECT * FROM requests', (err, result) => {
+        if(err){
+            console.log(err);
+        } else {
+            res.send(result)
         }
     })
 })
@@ -237,6 +312,40 @@ app.put("/updateoneg", (req, res) => {
             }else{
                 res.send(result)
                 console.log(result);
+            }
+        }
+    )
+})
+
+app.put('/reqapprove', (req, res) => {
+    const status = req.body.status;
+    const id = req.body.id;
+
+    db.query(
+        'UPDATE requests SET status = ? WHERE id = ?',
+        [status, id],
+        (err, result) => {
+            if(err){
+                console.log(err);
+            }else {
+                res.send(result);
+            }
+        }
+    )
+})
+
+app.put('/reqreject', (req, res) => {
+    const status = req.body.status;
+    const id = req.body.id;
+
+    db.query(
+        'UPDATE requests SET status = ? WHERE id = ?',
+        [status, id],
+        (err, result) => {
+            if(err){
+                console.log(err);
+            }else {
+                res.send(result);
             }
         }
     )

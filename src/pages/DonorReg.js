@@ -41,32 +41,32 @@ function DonorReg() {
        
        <input className='donor-input' type="text" placeholder='National ID' onChange={(event) => {
         setNationalId(event.target.value);
-       }}/>
+       }} required/>
        <input className='donor-input' type="text" placeholder='Full Name' onChange={(event) => {
         setDonorName(event.target.value)
-       }}/>
+       }} required/>
        <input className='donor-input' type="text" placeholder='dd-mm-yyy' onChange={(event) => {
         setBirthDate(event.target.value)
-       }}/>
+       }} required/>
        <input className='donor-input' type="text" placeholder='Gender' onChange={(event) => {
         setGender(event.target.value)
-       }}/>
+       }} required/>
        <input className='donor-input' type="text" placeholder='Blood Group' onChange={(event) => {
         setBloodGroup(event.target.value)
-       }}/>
+       }} required/>
        <input className='donor-input' type="text" placeholder='Address' onChange={(event) => {
         setAddress(event.target.value)
-       }}/>
+       }} required/>
        <input className='donor-input' type="text" placeholder='Contact Number' onChange={(event) => {
         setContactNumber(event.target.value)
-       }}/>
+       }} required/>
        <input className='donor-input' type="email" placeholder='Email' onChange={(event) => {
         setEmail(event.target.value)
-       }}/>
+       }} required/>
        <input className='donor-input' type="text" placeholder='Diseases (if any)' onChange={(event) => {
         setDiseases(event.target.value)
-       }}/>
-       <button onClick={registerDonor}>Register</button>
+       }} required/>
+       <button className='donor-btn' onClick={registerDonor}>Register</button>
        </div>
       </div>
     </div>

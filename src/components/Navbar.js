@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function Navbar() {
+  const [isActive, setIsActive] = useState(false);
+
   return (
     <div>
       <div className='navigation-bar'>
@@ -18,13 +20,23 @@ function Navbar() {
         <Link>
           <h3 className='nav-items'>Search</h3>
         </Link>
-        <Link to="/donor_reg">
-          <h3 className='nav-items'>Donor</h3>
-        </Link>
-        <Link to="/admin_home">
+        <div>
+          <h3 className='nav-items' onClick={() => {
+            isActive ? setIsActive(false) : setIsActive(true);
+          }}>Donor</h3>
+          {isActive && <div style={{backgroundColor: 'rgb(9, 9, 65, 0.5)'}}>
+            <Link to="/donor_reg">
+              <h3 className='nav-items'>Sign Up</h3>
+            </Link>
+            <Link to="/donor_login">
+              <h3 className='nav-items'>Sign In</h3>
+            </Link>
+            </div>}
+        </div>
+        <Link to="/admin_login">
           <h3 className='nav-items'>Admin</h3>
         </Link>
-        <Link>
+        <Link to>
           <h3 className='nav-items'>Contact</h3>
         </Link>
         </div>

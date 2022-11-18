@@ -6,6 +6,7 @@ import AdminDonors from './pages/AdminDonors';
 import AdminHome from './pages/AdminHome';
 import AdminLogin from './pages/AdminLogin';
 import BloodRequest from './pages/BloodRequest';
+import DonorHome from './pages/DonorHome';
 import DonorLogin from './pages/DonorLogin';
 import DonorReg from './pages/DonorReg';
 import Home from './pages/Home';
@@ -21,6 +22,7 @@ function App() {
       <Route path='/admin_home' element={<AdminHome />} />
       <Route path='/admin_donors' element={<AdminDonors />} />
       <Route path='/blood_request' element={<BloodRequest />} />
+      <Route path='/donor_home' element={<DonorHome />}/>
     </Routes>
   );
 }
