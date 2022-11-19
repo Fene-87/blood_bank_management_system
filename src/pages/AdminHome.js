@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import Axios from 'axios';
 import { FaHeart, FaUsers, FaHandHoldingHeart, FaSpinner, FaCheckSquare } from 'react-icons/fa'
+import { useReactToPrint } from 'react-to-print';
 
 function AdminHome() {
   useEffect(() => {
@@ -26,9 +27,15 @@ function AdminHome() {
   const [allRequests, setAllRequests] = useState([]);
   const [approveStatus, setApproveStatus] = useState([]);
   const [allStatus, setAllStatus] = useState([]);
+  
+
+  const printDonors = useRef();
+  const printRequests = useRef();
 
   const approved = 'Approved';
   const rejected = 'Rejected';
+
+
 
   const donordon = () => {
     Axios.get('http://localhost:3001/donors').then((response) => {
@@ -36,6 +43,18 @@ function AdminHome() {
       console.log(response.data)
     })
   }
+
+  const handleDonorsPrint = useReactToPrint({
+    content: () => printDonors.current,
+    documentTitle: 'All Registered Donors',
+    onAfterPrint: () => alert('Print Successful')
+  })
+
+  const handleRequestsPrint = useReactToPrint({
+    content: () => printRequests.current,
+    documentTitle: 'All Blood Requests',
+    onAfterPrint: () => alert('Print Successful')
+  })
 
 
   const getDonors = () => {
@@ -396,6 +415,7 @@ const newDonation = () => {
 
     
     { showDonors && <div style={{backgroundColor: '#D3D3D3'}}>
+      <div ref={printDonors}>
     <div className='donor-list' style={{borderStyle: 'none'}}>
         <p className='each-donor donor-head' style={{width: '8%'}}>National ID</p>
         <p className='each-donor donor-head' style={{width: '15%'}}>Full Name</p>
@@ -422,6 +442,10 @@ const newDonation = () => {
         
       </div>
     })}
+      </div>
+      <div style={{marginTop: '10px', padding: 15}}>
+        <button style={{marginLeft: '50%'}} onClick={handleDonorsPrint}>Print</button>
+      </div>
       </div>}
 
 
@@ -498,6 +522,7 @@ const newDonation = () => {
       {/**Admin Requests List */}
 
       {showRequests && <div style={{backgroundColor: '#D3D3D3', height: '100%'}}>
+        <div ref={printRequests}>
       <div style={{display: 'flex', flexDirection: 'row', paddingLeft: 10, paddingRight: 10}}>
             <h4 style={{width: '8%', color: '#fff', fontSize: 25}}>Status</h4>
             <h4 style={{width: '13%', color: '#fff', fontSize: 25}}>Hospital Name</h4>
@@ -518,10 +543,18 @@ const newDonation = () => {
             <h4 style={{width: '6%'}}>{val.blood_units}</h4>
             <h4 style={{width: '8%'}}>{val.blood_group}</h4>
             <h4 style={{width: '13%'}}>{val.reason}</h4>
-            <button className='approve-reject' style={{backgroundColor: 'green', marginRight: 5}} onClick={() => {approveRequest(val.id)}}>Approve</button>
-            <button className='approve-reject' style={{backgroundColor: 'red'}} onClick={() => {rejectRequest(val.id)}}>Reject</button>
+            <div style={{width: '16%', display: 'flex', flexDirection: 'row'}}>
+             <button className='approve-reject' style={{backgroundColor: 'green', marginRight: 5}} onClick={() => {approveRequest(val.id)}}>Approve</button>
+             <button className='approve-reject' style={{backgroundColor: 'red'}} onClick={() => {rejectRequest(val.id)}}>Reject</button>
+            </div>
           </div>
         })}
+        </div>
+        <div style={{marginTop: '10px', padding: 15}}>
+          <button style={{marginLeft: '50%'}} onClick={() => {
+            handleRequestsPrint();
+            }}>Print</button>
+        </div>
         </div>}
     
     </div>
