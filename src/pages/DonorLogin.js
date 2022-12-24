@@ -27,7 +27,7 @@ function DonorLogin() {
       <Navbar />
       <div className='login-bg'>
         <div className='image-overlay'>
-        {signin && <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        {signin && <form style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
          <input type="text" placeholder='Username' className='donor-input' onChange={(event) => {
           setLoginUsername(event.target.value)
          }} required/>
@@ -35,7 +35,7 @@ function DonorLogin() {
           setLoginPassword(event.target.value)
          }} required/>
          <button className='donor-btn' onClick={donLogin}>Login</button>
-         </div>}
+         </form>}
 
          {success && <div style={{width: '30rem', backgroundColor: '#fff', padding: 10, borderRadius: 5}}>
            <h4 style={{marginLeft: 180}}>Login Successful</h4>

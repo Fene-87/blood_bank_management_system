@@ -37,8 +37,7 @@ function DonorReg() {
     <Navbar />
     <div className='donor_registration'>
       <div className='image-overlay'>
-      <div className='donor_reg'>
-       
+      <form className='donor_reg'>
        <input className='donor-input' type="text" placeholder='National ID' onChange={(event) => {
         setNationalId(event.target.value);
        }} required/>
@@ -67,7 +66,7 @@ function DonorReg() {
         setDiseases(event.target.value)
        }} required/>
        <button className='donor-btn' onClick={registerDonor}>Register</button>
-       </div>
+       </form>
       </div>
     </div>
     </>

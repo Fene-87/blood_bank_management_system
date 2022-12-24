@@ -40,7 +40,7 @@ function AdminHome() {
   const donordon = () => {
     Axios.get('http://localhost:3001/donors').then((response) => {
       setDonorList(response.data);
-      console.log(response.data)
+    
     })
   }
 
@@ -60,7 +60,7 @@ function AdminHome() {
   const getDonors = () => {
     Axios.get('http://localhost:3001/donors').then((response) => {
       setDonorList(response.data);
-      console.log(response.data)
+      
     })
 
     showDonors ? setShowDonors(false) : setShowDonors(true);
@@ -108,7 +108,7 @@ function AdminHome() {
   const showBloodBank = () => {
     Axios.get('http://localhost:3001/bbank').then((response) => {
       setBloodBankList(response.data);
-      console.log(response.data);
+      
     })
     setBloodBank(true);
     setHomePage(false);
@@ -122,7 +122,7 @@ function AdminHome() {
   const getAllRequests = () => {
     Axios.get('http://localhost:3001/showrequests').then((response) => {
       setAllRequests(response.data);
-      console.log(response.data);
+      
     })
 
     setShowRequests(true);
@@ -271,10 +271,11 @@ const newDonation = () => {
       <div className='navigation-bar'>
         <h2 className='nav-items'>ADMIN</h2>
         <div className='nav-bar'>
-            <h3 className='nav-items' onClick={showHome}>Home</h3>
+            <h3 className='nav-items' onClick={() => {
+              showHome()
+              newDonation()}}>Home</h3>
             <h3 className='nav-items' onClick={showBloodBank}>Blood Banks</h3>
             <h3 className='nav-items' onClick={getDonors}>Donors</h3>
-            <h3 className='nav-items'>Search</h3>
             <h3 className='nav-items' onClick={regDon}>Donation</h3>
             <h3 className='nav-items' onClick={getAllRequests}>Requests</h3>
             
@@ -465,7 +466,10 @@ const newDonation = () => {
        <input type="text" placeholder='Blood Bank' className='donation-input' onChange={(event) => {
         setDonBloodBank(event.target.value);
        }}/>
-       <button onClick={newDonation} className='donation-btn'>Approve</button>
+       <button onClick={() => {
+        newDonation();
+        homeAllBloods();
+       }} className='donation-btn'>Approve</button>
        </div>
       </div>}
 

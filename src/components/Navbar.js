@@ -17,9 +17,7 @@ function Navbar() {
         <Link to="/blood_request">
           <h3 href='About'className='nav-items'>Request</h3>
         </Link>
-        <Link>
-          <h3 className='nav-items'>Search</h3>
-        </Link>
+        
         <div>
           <h3 className='nav-items' onClick={() => {
             isActive ? setIsActive(false) : setIsActive(true);
@@ -36,7 +34,7 @@ function Navbar() {
         <Link to="/admin_login">
           <h3 className='nav-items'>Admin</h3>
         </Link>
-        <Link to>
+        <Link to="/contact_page">
           <h3 className='nav-items'>Contact</h3>
         </Link>
         </div>
